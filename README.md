@@ -12,3 +12,10 @@ Er zijn nog een aantal dependencies naast deze repo:
 - smbus (apt-get install python-smbus), library voor de MCP23017 port expander
 
 
+Mede-ontwikkelaars:
+- *Bram Valstar*
+- *Youri Boos*
+- *Kasper Vriend*
+
+
+
