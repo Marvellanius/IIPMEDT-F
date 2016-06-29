@@ -8,7 +8,7 @@ Voor ons project IIPMEDT hebben wij een interactieve installatie moeten ontwerpe
 Hiervoor hebben wij gebruik gemaakt van een Raspberry Pi in combinatie met een Arduino Duemilanova en hebben in principe alles in Python geprogrammeerd.
 
 Er zijn nog een aantal dependencies naast deze repo:
-    -   SPI-Py (https://github.com/lthiery/SPI-Py), library dependency voor MFRC522-rfid reader
-    -   smbus (apt-get install python-smbus), library voor de MCP23017 port expander
+- SPI-Py (https://github.com/lthiery/SPI-Py), library dependency voor MFRC522-rfid reader
+- smbus (apt-get install python-smbus), library voor de MCP23017 port expander
 
 
