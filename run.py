@@ -9,7 +9,6 @@ import buttons
 from leds_blauw import baanBlauw
 from leds_rood import baanRood
 import smbus
-from threading import Thread
 
 #   initialiseer de port expander pins
 #bus = smbus.SMBus(0)  # Rev 1 Pi uses 0
@@ -111,7 +110,6 @@ def reset_fast():
     time.sleep(0.4)
     digitalWrite(ALL,LOW)
     GPIO.cleanup()
-    # subprocess.call(['killall -9 python'], shell=True)
 
 #   reset voor het spel
 def reset():
@@ -121,148 +119,15 @@ def reset():
     time.sleep(0.4)
     digitalWrite(ALL,LOW)
     GPIO.cleanup()
-    # subprocess.call(['killall -9 python'], shell=True)
     subprocess.call(['sudo reboot'], shell=True)
-
-#
-# def go():
-#     num = {' ': 0b11111111,
-#            '0': 0b11000000,
-#            '1': 0b11111001,
-#            '2': 0b10010100,
-#            '3': 0b10110000,
-#            '4': 0b10101001,
-#            '5': 0b10100010, # (0, 1, 0, 0, 1, 0, 0, 1),
-#            '6': 0b10000010, # (0, 1, 0, 0, 0, 0, 0, 1),
-#            '7': 0b11111000, # (0, 0, 0, 1, 1, 1, 1, 1),
-#            '8': 0b10000000, #(0, 0, 0, 0, 0, 0, 0, 1),
-#            '9': 0b10100000, # (0, 0, 0, 0, 1, 0, 0, 1),
-#            '.': 0b10000011, # (1, 1, 0, 0, 0, 0, 0, 1),
-#            'G': 0b11000010, # (0, 1, 0, 0, 0, 0, 1, 1),
-#            'O': 0b11000000, #(0, 0, 0, 0, 0, 0, 1, 1),
-#            'o': 0b10010011, #(1, 1, 0, 0, 0, 1, 0, 1),
-#            'D': 0b10010001, #(1, 0, 0, 0, 0, 1, 0, 1),
-#            'F': 0b10001110, #(0, 1, 1, 1, 0, 0, 0, 1),
-#            'u': 0b11010011, #(1, 1, 0, 0, 0, 1, 1, 1),
-#            't': 0b10000111, #(1, 1, 1, 0, 0, 0, 0, 1),
-#            'y': 0b10010001, #(1, 0, 0, 0, 1, 0, 0, 1),
-#            'E': 0b10000110, #(0, 1, 1, 0, 0, 0, 0, 1),
-#            'A': 0b10001000, #(0, 0, 0, 1, 0, 0, 0, 1),
-#            'L': 0b11000111, #(1, 1, 1, 0, 0, 0, 1, 1),
-#            'X': 0b10001001} #(1, 0, 0, 1, 0, 0, 0, 1)}
-#     display_string = ("  GO")
-#     x = 0
-#     while x < 400:
-#         for digit in range(4):
-#             bus.write_byte_data(DEVICE, OLATA, num[display_string[digit]])
-#             # GPIO.output(segments, (num[display_string[digit]]))
-#             if digit == 0:
-#                 bus.write_byte_data(DEVICE, OLATB, 0b00000001)
-#             if digit == 1:
-#                 bus.write_byte_data(DEVICE,OLATB,0b00000010)
-#             if digit == 2:
-#                 bus.write_byte_data(DEVICE,OLATB,0b00000100)
-#             else:
-#                 bus.write_byte_data(DEVICE,OLATB,0b00001000)
-#             # GPIO.output(digits[digit], 1)
-#             time.sleep(0.001)
-#             bus.write_byte_data(DEVICE, OLATB, 0)
-#             # GPIO.output(digits[digit], 0)
-#         x = x + 1
 
 
 def goed():
     sound(Goed)
-    # num = {' ': 0b11111111,
-    #     '0': 0b11000000,
-    #     '1': 0b11111001,
-    #     '2': 0b10010100,
-    #     '3': 0b10110000,
-    #     '4': 0b10101001,
-    #     '5': 0b10100010, # (0, 1, 0, 0, 1, 0, 0, 1),
-    #     '6': 0b10000010, # (0, 1, 0, 0, 0, 0, 0, 1),
-    #     '7': 0b11111000, # (0, 0, 0, 1, 1, 1, 1, 1),
-    #     '8': 0b10000000, #(0, 0, 0, 0, 0, 0, 0, 1),
-    #     '9': 0b10100000, # (0, 0, 0, 0, 1, 0, 0, 1),
-    #     '.': 0b10000011, # (1, 1, 0, 0, 0, 0, 0, 1),
-    #     'G': 0b11000010, # (0, 1, 0, 0, 0, 0, 1, 1),
-    #     'O': 0b11000000, #(0, 0, 0, 0, 0, 0, 1, 1),
-    #     'o': 0b10010011, #(1, 1, 0, 0, 0, 1, 0, 1),
-    #     'D': 0b10010001, #(1, 0, 0, 0, 0, 1, 0, 1),
-    #     'F': 0b10001110, #(0, 1, 1, 1, 0, 0, 0, 1),
-    #     'u': 0b11010011, #(1, 1, 0, 0, 0, 1, 1, 1),
-    #     't': 0b10000111, #(1, 1, 1, 0, 0, 0, 0, 1),
-    #     'y': 0b10010001, #(1, 0, 0, 0, 1, 0, 0, 1),
-    #     'E': 0b10000110, #(0, 1, 1, 0, 0, 0, 0, 1),
-    #     'A': 0b10001000, #(0, 0, 0, 1, 0, 0, 0, 1),
-    #     'L': 0b11000111, #(1, 1, 1, 0, 0, 0, 1, 1),
-    #     'X': 0b10001001} #(1, 0, 0, 1, 0, 0, 0, 1)}
-    # display_string = ("GOED")
-    # x = 0
-    # while x < 600:
-    #     for digit in range(4):
-    #         bus.write_byte_data(DEVICE, OLATA, num[display_string[digit]])
-    #         # GPIO.output(segments, (num[display_string[digit]]))
-    #         if digit == 0:
-    #             bus.write_byte_data(DEVICE, OLATB, 0b00000001)
-    #         elif digit == 1:
-    #             bus.write_byte_data(DEVICE,OLATB,0b00000010)
-    #         elif digit == 2:
-    #             bus.write_byte_data(DEVICE,OLATB,0b00000100)
-    #         else:
-    #             bus.write_byte_data(DEVICE,OLATB,0b00001000)
-    #         # GPIO.output(digits[digit], 1)
-    #         time.sleep(0.001)
-    #         bus.write_byte_data(DEVICE, OLATB, 0)
-    #         # GPIO.output(digits[digit], 0)
-    #     x = x + 1
 
 
 def fout():
     sound(Fout)
-    # num = {' ': 0b11111111,
-    #     '0': 0b11000000,
-    #     '1': 0b11111001,
-    #     '2': 0b10010100,
-    #     '3': 0b10110000,
-    #     '4': 0b10101001,
-    #     '5': 0b10100010, # (0, 1, 0, 0, 1, 0, 0, 1),
-    #     '6': 0b10000010, # (0, 1, 0, 0, 0, 0, 0, 1),
-    #     '7': 0b11111000, # (0, 0, 0, 1, 1, 1, 1, 1),
-    #     '8': 0b10000000, #(0, 0, 0, 0, 0, 0, 0, 1),
-    #     '9': 0b10100000, # (0, 0, 0, 0, 1, 0, 0, 1),
-    #     '.': 0b10000011, # (1, 1, 0, 0, 0, 0, 0, 1),
-    #     'G': 0b11000010, # (0, 1, 0, 0, 0, 0, 1, 1),
-    #     'O': 0b11000000, #(0, 0, 0, 0, 0, 0, 1, 1),
-    #     'o': 0b10010011, #(1, 1, 0, 0, 0, 1, 0, 1),
-    #     'D': 0b10010001, #(1, 0, 0, 0, 0, 1, 0, 1),
-    #     'F': 0b10001110, #(0, 1, 1, 1, 0, 0, 0, 1),
-    #     'u': 0b11010011, #(1, 1, 0, 0, 0, 1, 1, 1),
-    #     't': 0b10000111, #(1, 1, 1, 0, 0, 0, 0, 1),
-    #     'y': 0b10010001, #(1, 0, 0, 0, 1, 0, 0, 1),
-    #     'E': 0b10000110, #(0, 1, 1, 0, 0, 0, 0, 1),
-    #     'A': 0b10001000, #(0, 0, 0, 1, 0, 0, 0, 1),
-    #     'L': 0b11000111, #(1, 1, 1, 0, 0, 0, 1, 1),
-    #     'X': 0b10001001} #(1, 0, 0, 1, 0, 0, 0, 1)}
-    # display_string = ("Fout")
-    # x = 0
-    # while x < 600:
-    #     for digit in range(4):
-    #         bus.write_byte_data(DEVICE, OLATA, num[display_string[digit]])
-    #         # GPIO.output(segments, (num[display_string[digit]]))
-    #         if digit == 0:
-    #             bus.write_byte_data(DEVICE, OLATB, 0b00000001)
-    #         elif digit == 1:
-    #             bus.write_byte_data(DEVICE,OLATB,0b00000010)
-    #         elif digit == 2:
-    #             bus.write_byte_data(DEVICE,OLATB,0b00000100)
-    #         else:
-    #             bus.write_byte_data(DEVICE,OLATB,0b00001000)
-    #         # GPIO.output(digits[digit], 1)
-    #         time.sleep(0.001)
-    #         bus.write_byte_data(DEVICE, OLATB, 0)
-    #         # GPIO.output(digits[digit], 0)
-    #     x = x + 1
 
 #   main functie
 def run():
@@ -281,7 +146,7 @@ def run():
     rpi = rfidreader.RFID()
 
     #   initialiseer de Opdracht klasse
-    dingetje = Opdracht()
+    opdr = Opdracht()
 
     # zet check voor spel einde op 0
     spelstop = 0
@@ -318,7 +183,7 @@ def run():
                     # go()
                     # temperatuur = dingetje.runtemp()
                     # print(temperatuur)
-                    if(dingetje.runtemp()) >= 36.00:
+                    if(opdr.runtemp()) >= 36.00:
                         count_blauw += 1
                         print(count_blauw)
                         baanBlauw(count_blauw)
@@ -339,7 +204,7 @@ def run():
                     sound(sensor)
                     sound(hartslagsensor)
                     # go()
-                    if (dingetje.runhart() >= 80):
+                    if (opdr.runhart() >= 80):
                         count_blauw += 1
                         print(count_blauw)
                         baanBlauw(count_blauw)
@@ -359,7 +224,7 @@ def run():
                     sound(sensor)
                     sound(hartslagsensor)
                     # go()
-                    if (dingetje.runhart()+10 >= 100):
+                    if (opdr.runhart()+10 >= 100):
                         count_blauw += 1
                         print(count_blauw)
                         baanBlauw(count_blauw)
@@ -379,7 +244,7 @@ def run():
                     sound(sensor)
                     sound(druksensor_pink)
                     # go()
-                    if (dingetje.runforce() >= 750):
+                    if (opdr.runforce() >= 750):
                         count_blauw += 1
                         print(count_blauw)
                         baanBlauw(count_blauw)
@@ -399,7 +264,7 @@ def run():
                     sound(sensor)
                     sound(druksensor_duim)
                     # go()
-                    if (dingetje.runforce() >= 1500):
+                    if (opdr.runforce() >= 1500):
                         count_blauw += 1
                         print(count_blauw)
                         baanBlauw(count_blauw)
@@ -521,7 +386,7 @@ def run():
                     sound(sensor)
                     sound(hartslagsensor)
                     # go()
-                    if dingetje.runhart()+10 >= 100:
+                    if opdr.runhart()+10 >= 100:
                         count_rood += 1
                         print(count_rood)
                         baanRood(count_rood)
@@ -542,7 +407,7 @@ def run():
                     sound(sensor)
                     sound(temperatuursensor)
                     # go()
-                    if (dingetje.runtemp() >= 36):
+                    if (opdr.runtemp() >= 36):
                         count_rood += 1
                         print(count_rood)
                         baanRood(count_rood)
@@ -562,7 +427,7 @@ def run():
                     sound(sensor)
                     sound(druksensor_pink)
                     # go()
-                    if (dingetje.runforce() >= 750):
+                    if (opdr.runforce() >= 750):
                         count_rood += 1
                         print(count_rood)
                         baanRood(count_rood)
@@ -582,7 +447,7 @@ def run():
                     sound(sensor)
                     sound(druksensor_duim)
                     # go()
-                    if (dingetje.runforce() >= 1500):
+                    if (opdr.runforce() >= 1500):
                         count_rood += 1
                         print(count_rood)
                         baanRood(count_rood)
@@ -602,7 +467,7 @@ def run():
                     sound(sensor)
                     sound(hartslagsensor)
                     # go()
-                    if (dingetje.runhart() >= 80):
+                    if (opdr.runhart() >= 80):
                         count_rood += 1
                         print(count_rood)
                         baanRood(count_rood)

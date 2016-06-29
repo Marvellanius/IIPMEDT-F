@@ -14,7 +14,7 @@ Er zijn nog een aantal dependencies naast deze repo:
 
 Mede-ontwikkelaars:
 - **Bram Valstar**
-- **Youri Boos**
+- **Youri Bos**
 - **Kasper Vriend**
 
 
